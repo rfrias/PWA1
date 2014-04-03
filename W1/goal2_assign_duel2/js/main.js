@@ -1,54 +1,45 @@
 /*
 Name: Ramon Rafael G. Frias IV
 Date: 03 APR 2014
-Assignment: Goal1: Assignment: The Duel - Part 1
+Assignment: Goal1: Assignment: The Duel - Part 2
 */
 
 // self-executing function
 (function(){
 
      console.log("FIGHT!!!");
-
-     //player name          a
-     var playerOneName = "Spiderman";
-     var playerTwoName = "Batman";
-
-     //player damage
-     var playerOneDamage = 20;
-     var playerTwoDamage = 20;
-
-     //player health
-     var playerOneHealth = 100;
-     var playerTwoHealth = 100;
+    
+     var fighter1 = ["Spiderman", 20, 100]; //player one name, damage, and health (inorder)
+     var fighter2 = ["Batman", 20, 100]; //player two name, damage, and health (inorder)
 
      var round = 0;
 
      function fight(){
         console.log('in the fight function');
         
-        alert(playerOneName+":"+playerOneHealth+" *START* "+playerTwoName+":"+playerTwoHealth);
+        alert(fighter1[0]+":"+fighter1[2]+" *START* "+fighter2[0]+":"+fighter2[2]);
 
         for (var i=0; i<10; i++){
          
            //random formula is - Math.Floor(Math.random() * (max - min) + min);
 
-           var minDamage1 = playerOneDamage * 0.5;
-           var minDamage2 = playerTwoDamage * 0.5;
-           var f1 = Math.floor(Math.random() * (playerOneDamage - minDamage1) + minDamage1);
-           var f2 = Math.floor(Math.random() * (playerTwoDamage - minDamage2) + minDamage2);
+           var minDamage1 = fighter1[1] * 0.5;
+           var minDamage2 = fighter2[1] * 0.5;
+           var f1 = Math.floor(Math.random() * (fighter1[1] - minDamage1) + minDamage1);
+           var f2 = Math.floor(Math.random() * (fighter2[1] - minDamage2) + minDamage2);
 
            //inflict damage
-           playerOneHealth-=f1; //this is similar to this formula: playerOneHealth = playerOneHealth - f1;
-           playerTwoHealth-=f2;
+           fighter1[2]-=f1; //this is similar to this formula: playerOneHealth = playerOneHealth - f1;
+           fighter2[2]-=f2;
 
-           console.log(playerOneName+":"+playerOneHealth+" "+playerTwoName+":"+playerTwoHealth);
+           console.log(fighter1[0]+":"+fighter1[2]+" "+fighter2[0]+":"+fighter2[2]);
 
            var results = winnerCheck();
            console.log(results);
 
            if(results === "no winner"){
            	  round++;
-           	  alert(playerOneName+":"+playerOneHealth+" *ROUND "+round+" OVER*"+playerTwoName+":"+playerTwoHealth);
+           	  alert(fighter1[0]+":"+fighter1[2]+" *ROUND "+round+" OVER*"+fighter2[0]+":"+fighter2[2]);
            }else{
               alert(results);
               break;
@@ -64,12 +55,12 @@ Assignment: Goal1: Assignment: The Duel - Part 1
 
      	var result="no winner";
 
-     	if(playerOneHealth<1 && playerTwoHealth<1){
+     	if(fighter1[2]<1 && fighter2[2]<1){
            result = "You Both Die";
-        }else if(playerOneHealth<1){
-           result =playerTwoName+" WINS!!!"
-        }else if(playerTwoHealth<1){
-           result =playerOneName+" WINS!!!"
+        }else if(fighter1[2]<1){
+           result =fighter2[0]+" WINS!!!"
+        }else if(fighter2[2]<1){
+           result =fighter1[0]+" WINS!!!"
      	};
 
      	return result;
